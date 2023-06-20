@@ -1,14 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-// import { reducer } from "./slices/character";
+import { albumSlice } from "./slices/x-data";
 
 export const store = configureStore(
 {
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(subclassDataSlice.middleware),
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(albumSlice.middleware),
 	reducer:
 	{
 		// characters: reducer,
-		// [subclassDataSlice.reducerPath]: subclassDataSlice.reducer,
+		[albumSlice.reducerPath]: albumSlice.reducer,
 	},
 });
 
