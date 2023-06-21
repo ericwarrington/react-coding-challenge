@@ -32,14 +32,19 @@ export const albumSlice = createApi(
 		getAllUsers: builder.query(
 		{
 			query: (arg?: null) => `users`,
-			transformResponse: (res: any[]): Map<number, any> => new Map(res.map((u) => [u.id, u])),
+			transformResponse: (res: any[]): Record<number, any> => Object.fromEntries(res.map((u) => [u.id, u])),
 		}),
 		getUser: builder.query(
 		{
 			query: (id: number) => `users?id=${id}`,
 		}),
+
+		getPhotos: builder.query(
+		{
+			query: (albumId: number) => `photos?albumId=${albumId}`,
+		}),
 	}),
 });
 
 // Export the auto-generated hook for the `getAlbums` query endpoint
-export const { useGetAllAlbumsQuery, useGetAllUsersQuery } = albumSlice;
+export const { useGetAllAlbumsQuery, useGetAllUsersQuery, useGetPhotosQuery } = albumSlice;
